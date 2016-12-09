@@ -2,21 +2,29 @@ public class Bottles {
 
     public static void main (String[] args) {
 
-        int bottles = 99;
-	String stanza1 = " bottles of beer on the wall, ";
-	String stanza2 = " bottles of beer.";
-	String stanza3 = "Take one down and pass it around, ";
-	String stanza4 = " of beer on the wall.";
-        String stanza5 = "No more bottles of beer on the wall, no more bottles of beer. Go to the store and buy some more, 99 bottles of beer on the wall."; 
-
-	while(bottles > 0) {
-	    System.out.println(bottles + stanza1 + stanza2);
-	    bottles -= 1;
-	    System.out.println(stanza3 + bottles + stanza4);
+        int number = 99;
+	String bottle = " bottle ";
+        String bottles = " bottles ";
+	String fragment1 = "of beer on the wall, ";
+	String fragment2 = "of beer.";
+	String fragment3 = "Take one down and pass it around, ";
+	String fragment4 = "of beer on the wall.";
+        String fragment5 = "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall."; 
+	
+	while(number > 1) {
+	    System.out.println(number + bottles + fragment1 + number + bottles + fragment2);
+	    number -= 1;
+	    System.out.println(fragment3 + number + ((number > 2) ? bottles : bottle) + fragment4);
 	}
 
-	System.out.println(stanza5);
+	System.out.println(number + bottle + fragment1 + number + bottle + fragment2);
+	number -= 1;
+	System.out.println(fragment3 + "no more bottles of beer on the wall.");
+
+	System.out.println(fragment5);
 
     }
 
 }
+
+// Assemble two stanzas with conditional logic using args passed in
