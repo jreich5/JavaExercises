@@ -1,101 +1,80 @@
 public class GuessGame {
-							PROPERTIES
-    int computerGuess;
-    int[] winners;
-    int[] players;
-							METHODS
-    void setComputerGuess() {
-        this.computerGuess = this.generateNumber();
-    }
-
-    int getComputerGuess() {
-        return this.computerGuess;
-    }
-    
-    // generate player method
-    void generatePlayers() {
-        Player justin = new Player();
-        justin.name = "Justin";
-        players[0] = justin.name;
-
-        Player pam = new Player();
-        pam.name = "Pam";
-        players[0] = pam.name;
-
-        Player amelie = new Player();
-        amelie.name = "Amelie";
-        players[0] = amelie.name;
-    } 
-
-    int generatePlayerGuesses() {
-        justin.guess();
-        pam.guess();
-        amelie.guess();
-    }
-
-    // Determine winner
-    void determineWinner() {
-
-    	if (justin.guess == computerGuess) {
-            winners[0] = "Justin";
-    	}
-    	if (pam.guess == computerGuess) {
-            winners[1] = "Pam";
-    	}
-    	if (amelie.guess == computerGuess) {
-            winners[2] = "Amelie";
-    	}
-    	if (winners == null) {
-            runRound();
-    	} else {
-            endGame();
-        }
-    }
-
-    // runRound method
-    void runRound() {
-
-        // output computer number
-        System.out.println("[The secret number is... " + this.computerGuess + ".]");
-        System.out.println("Please guess a number between 0 and 9.");
-        
-        generatePlayerGuesses();
-
-        // output round outcome
-        System.out.println("Justin guesses " + justin.currentGuess);
-        System.out.println("Pam guesses " + pam.currentGuess);
-        System.out.println("Amelie guesses " + amelie.currentGuess);
-        
-        // if no player won game, runRound again
-    
-    }
-
-
-    // endGame method
-    void endGame() {
-        // declare the winner(s)!
-        for (var i = 0; i < this.winners; ++i) {
-            System.out.println(this.winners[i] + "is a winner!!");
-        }
-    }
-
-    // startGame method
-    void startGame {
-        System.out.println("Welcome, players, to guess the game!");
-        System.out.println("Let's begin!!");
 	
-        /*
-        for (int i = 0; i < 3; ++i) {
-            Player player = new Player();
-        }
-        */
-        // generate three players
-        this.generatePlayers();
+    public static void startGame() {
+					
+        int computerGuess;
 
-        // generate the computer number
-        this.generateNumber();
+        // set computerGuess
+    	computerGuess = 0 + (int)(Math.random() * ((9 - 0) + 1));
+
+    	// generate players
+    	Player justin;
+    	Player pam;
+    	Player amelie;
+
+    	// instantiate new players
+    	justin = new Player();
+    	pam = new Player();
+    	amelie = new Player();
+
+    	// player status
+    	boolean justinWinner = false;
+    	boolean pamWinner = false;
+    	boolean amelieWinner = false;
+
+	System.out.println("Welcome, players, to guess the game!");
+        System.out.println("Let's begin!!");
+
+        while((justinWinner || pamWinner || amelieWinner) != true) {
+    
+            System.out.println("[The secret number is... " + computerGuess + ".]");
+            System.out.println("Please guess a number between 0 and 9.");
+
+            // generate player guesses
+            justin.guess();
+            pam.guess();
+            amelie.guess();
+
+            // output round outcome
+            System.out.println("Justin guesses " + justin.currentGuess);
+            System.out.println("Pam guesses " + pam.currentGuess);
+            System.out.println("Amelie guesses " + amelie.currentGuess);
+
+            // check for winners
+            if (justin.currentGuess == computerGuess) {
+                justinWinner = true;
+		break;
+    	    }
+    	    if (pam.currentGuess == computerGuess) {
+                pamWinner = true;
+		break;
+    	    }
+    	    if (amelie.currentGuess == computerGuess) {
+                amelieWinner = true;
+		break;
+    	    }
+
+            System.out.println("All players guessed incorrectly. Try again.");
+            
+        }
+       
+        System.out.println("The game has been won!!");
         
-        // runRound
+        // verify all player statuses
+    	if (justin.currentGuess == computerGuess) {
+            justinWinner = true;
+    	}
+    	if (pam.currentGuess == computerGuess) {
+            pamWinner = true;
+    	}
+    	if (amelie.currentGuess == computerGuess) {
+            amelieWinner = true;
+    	}
+
+        // display final game results
+        System.out.println("Justin won the game: " + justinWinner);
+        System.out.println("Pam won the game: " + pamWinner);
+        System.out.println("Amelie won the game: " + amelieWinner);
 
     }
 
